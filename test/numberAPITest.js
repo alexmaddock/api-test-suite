@@ -1,4 +1,6 @@
 import assert from 'assert';
+import getRandomNumber from '../numberAPI.js';
+import recursivePoll from '../polling.js';
 
 describe('Number API', ()=> {
     
@@ -8,13 +10,17 @@ describe('Number API', ()=> {
             return Math.random();
         };
 
-        
+        const randomNumber = generateRandomNumber();
+        console.log('Random Number is:', randomNumber);
 
     });
 
 
-    it('should poll actual number endpoint', ()=> {
-    
+    it('should poll actual number endpoint', async()=> {
+        const randomNumber = await getRandomNumber();
+        console.log('Random Number is: ', randomNumber[0]);
+
+
     });
 
 });
