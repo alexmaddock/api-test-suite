@@ -20,7 +20,7 @@ describe('Number API', ()=> {
         const randomNumber = getRandomNumber;
         // console.log('Random Number is: ', randomNumber[0]);
 
-        await recursivePoll(10, randomNumber, (outcome) => {outcome < 50});
+        await recursivePoll(10, randomNumber, (outcome) => {return outcome[0] < 10});
 
         // Might have to try something like const randomNumber = getRandomNumber(); await randomNumber[0]; to get index result
 

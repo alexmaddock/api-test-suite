@@ -19,8 +19,6 @@ const recursivePoll = async(attemptsRemaining = 10, fn, conditionToSatisfy) => {
         return result; // 3. Return statement to have a final result.
     }
 
-    console.log("Is this true:", conditionToSatisfy(result))
-
     if(conditionToSatisfy(result)) { // add a truth statement to resolve - ideal for cb function use
         console.log("Condition satisfied:", result)
         return result;
