@@ -1,0 +1,16 @@
+{
+  "name": "api-test-suite",
+  "version": "1.0.0",
+  "description": "## Random Number API",
+  "main": "",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "install": "^0.13.0",
+    "mocha": "^11.1.0",
+    "npm": "^11.3.0"
+  }
+}
