@@ -9,9 +9,9 @@ describe('Number API', ()=> {
         const generateRandomNumber = () => {
             return Math.random();
         };
-
-        const randomNumber = generateRandomNumber();
-        console.log('Random Number is:', randomNumber);
+    
+        // const randomNumber = generateRandomNumber();
+        recursivePoll(10, generateRandomNumber); // have to pass in generateRandomNumber as reference since internally poll calls the function
 
     });
 

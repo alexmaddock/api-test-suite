@@ -10,14 +10,21 @@
  * 3. Return statements on the values we return (cannot build without these otherwise it will fill run till it fills stack): return result / return functionName(params...)
  * 4. A means by which the functions nature is self referential i.e. calling itself has all the necessary conditions to gracefully resolve: return recursivePoll(param1, param2NewState, param--)
  */
-const recursivePoll = () => {
+const recursivePoll = (attemptsRemaining = 10, fn) => {
+    attemptsRemaining --;
+    const result = fn(); // call function from reference passed in
+    console.log('My result is:', result);
     // 1. Base Case
     if(attemptsRemaining == 0) {
-        return $something; // 3
+        return result; // 3
     }
     // 
     else {
+        console.log(`Return statement not resolved, result was ${result}, rerunning function.`);
+        console.log(`Attempts remaining ${attemptsRemaining}`);
         // 3. Return statement to continue executing
-        return recursivePoll() // 4. function self reference + 2. Decrement
+        return recursivePoll(attemptsRemaining, fn) // 4. function self reference + 2. Decrement
     }
 }
+
+export default recursivePoll;
