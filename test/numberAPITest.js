@@ -1,6 +1,7 @@
 import assert from 'assert';
 import getRandomNumber from '../numberAPI.js';
 import recursivePoll from '../polling.js';
+import { get } from 'http';
 
 describe('Number API', ()=> {
     
@@ -17,8 +18,12 @@ describe('Number API', ()=> {
 
 
     it('should poll actual number endpoint', async()=> {
-        const randomNumber = await getRandomNumber();
-        console.log('Random Number is: ', randomNumber[0]);
+        // const randomNumber = await getRandomNumber();
+        // console.log('Random Number is: ', randomNumber[0]);
+
+        recursivePoll(10, getRandomNumber);
+
+        // Might have to try something like const randomNumber = getRandomNumber(); await randomNumber[0]; to get index result
 
 
     });
