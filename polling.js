@@ -28,7 +28,10 @@ const recursivePoll = async(attemptsRemaining = 10, fn, conditionToSatisfy) => {
         console.log(`Return statement not resolved, result was ${result}, rerunning function.`);
         console.log(`Attempts remaining ${attemptsRemaining}`);
         // 3. Return statement to continue executing
-        return recursivePoll(attemptsRemaining, fn, conditionToSatisfy) // 4. function self reference.
+        setTimeout(() => {
+            return recursivePoll(attemptsRemaining, fn, conditionToSatisfy) // 4. function self reference.
+        },1000)
+        
     }
 }
 
