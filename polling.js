@@ -1,6 +1,6 @@
 // helper functions to hit endpoint repeatedly should should results not be present yet
 
-// standard async await poll
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // recursive function
 /**
@@ -10,12 +10,13 @@
  * 3. Return statements on the values we return (cannot build without these otherwise it will fill run till it fills stack): return result / return functionName(params...)
  * 4. A means by which the functions nature is self referential i.e. calling itself has all the necessary conditions to gracefully resolve: return recursivePoll(param1, param2NewState, param--)
  */
-const recursivePoll = async(attemptsRemaining = 10, fn, conditionToSatisfy) => {
+const recursivePoll = async(attemptsRemaining = 10, fn, conditionToSatisfy, delayBy) => {
     attemptsRemaining --; // 2. Decrement value to avoid forever loop.
     const result = await fn(); // call function from reference passed in.
-    console.log('My result is:', result);
+
     // 1. Base Case
     if(attemptsRemaining == 0) {
+        console.log(`Condition not satisfied, final result from poll attempt: ${result}`);
         return result; // 3. Return statement to have a final result.
     }
 
@@ -27,11 +28,11 @@ const recursivePoll = async(attemptsRemaining = 10, fn, conditionToSatisfy) => {
     else {
         console.log(`Return statement not resolved, result was ${result}, rerunning function.`);
         console.log(`Attempts remaining ${attemptsRemaining}`);
-        // 3. Return statement to continue executing
-        setTimeout(() => {
-            return recursivePoll(attemptsRemaining, fn, conditionToSatisfy) // 4. function self reference.
-        },1000)
         
+        await delay(delayBy);
+
+        // 3. Return statement to continue executing
+        return recursivePoll(attemptsRemaining, fn, conditionToSatisfy, delayBy) // 4. function self reference.
     }
 }
 
