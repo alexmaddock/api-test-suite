@@ -1,6 +1,6 @@
-// helper functions to hit endpoint repeatedly should should results not be present yet
+import delay from "./helpers/delay.js";
 
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+// helper functions to hit endpoint repeatedly should should results not be present yet
 
 // recursive function
 /**
@@ -28,7 +28,7 @@ const recursivePoll = async(attemptsRemaining = 10, fn, conditionToSatisfy, dela
     else {
         console.log(`Return statement not resolved, result was ${result}, rerunning function.`);
         console.log(`Attempts remaining ${attemptsRemaining}`);
-        
+
         await delay(delayBy);
 
         // 3. Return statement to continue executing
